@@ -12,7 +12,7 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 
-Version:                1.0.2
+Version:                1.0.3
 
 %global plugin_name libpodstats
 %global collectd_version 5.11.0
