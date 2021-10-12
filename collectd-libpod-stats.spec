@@ -1,18 +1,18 @@
 %bcond_without check
 
-# https://github.com/pleimer/collectd-libpod-stats
-%global goipath         github.com/pleimer/collectd-libpod-stats
+# https://github.com/infrawatch/collectd-libpod-stats
+%global goipath         github.com/infrawatch/collectd-libpod-stats
 
 %global provider        github
 %global provider_tld    com
-%global project         pleimer
+%global project         infrawatch
 %global repo            collectd-libpod-stats
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
-%global import_path     github.com/pleimer/collectd-libpod-stats
+%global import_path     github.com/infrawatch/collectd-libpod-stats
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 
-Version:                1.0.3
+Version:                1.0.4
 
 %global plugin_name libpodstats
 %global collectd_version 5.11.0
@@ -63,8 +63,8 @@ Requires:  collectd
 # %setup -T -D -q -a 1 -n %{extractdir}
 %global gobuilddir $(pwd)
 
-mkdir -p %{gobuilddir}/src/github.com/pleimer/collectd-libpod-stats
-pushd %{gobuilddir}/src/github.com/pleimer/collectd-libpod-stats
+mkdir -p %{gobuilddir}/src/github.com/infrawatch/collectd-libpod-stats
+pushd %{gobuilddir}/src/github.com/infrawatch/collectd-libpod-stats
 gzip -dc %{SOURCE0} | tar --strip-components=1 -xvvf -
 popd
 mkdir -p %{gobuilddir}/src/collectd.org/
@@ -81,7 +81,7 @@ pushd %{gobuilddir}/src/collectd.org/
 popd
 CGO_CFLAGS="-I%{gobuilddir}/src/collectd.org/src/daemon -I%{gobuilddir}/src/collectd.org/src %{build_cflags}" \
 GOPATH="%{gobuilddir}:${GOPATH:+${GOPATH}:}/usr/share/gocode" GO111MODULE=off \
-go build -buildmode c-shared -compiler gc -tags="rpm_crashtraceback ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-}-X github.com/pleimer/collectd-libpod-stats/version=%{Version} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -extldflags '%{build_ldflags}'" -a -v -x -o %{gobuilddir}/lib/%{plugin_name}.so %{goipath}/plugin/
+go build -buildmode c-shared -compiler gc -tags="rpm_crashtraceback ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-}-X github.com/infrawatch/collectd-libpod-stats/version=%{Version} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -extldflags '%{build_ldflags}'" -a -v -x -o %{gobuilddir}/lib/%{plugin_name}.so %{goipath}/plugin/
 
 
 %install
@@ -102,5 +102,19 @@ install -m 0644 -vp types.db.%{plugin_name} %{buildroot}%{_datadir}/collectd/
 
 
 %changelog
+* Tue Oct 12 2021 Paul Leimer <pleimer@redhat.com> - 1.0.4
+- move root repository to github.com/infrawatch org
+- 391d6bb Account for counter rollover
+
+* Wed Mar 17 2021 Paul Leimer <pleimer@redhat.com> - 1.0.3
+- 6174045 remove unused
+- 8f9bc8d experimenting on getting collectd global hostname
+
+* Tue Aug 11 2020 Paul Leimer <pleimer@redhat.com> - 1.0.2
+- 9a7dcdb Ignore non-existant cgroups
+- 6f573e5 Update README.md
+- 94e18b3 Ignore non-existant cgroups
+- 04c96df fix path generation for all cgroups and users
+
 * Tue Jun 16 16:26:54 EDT 2020 pleimer <pfbleimer@gmail.com> - 1.0.1-1
 - Initial package
