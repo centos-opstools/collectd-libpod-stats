@@ -25,7 +25,7 @@ Collectd plugin for monitoring resource usage of containers managed by libpod.}
 %global godocs          README.md
 
 Name:           collectd-libpod-stats
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Collectd plugin for monitoring resource usage of containers managed by libpod
 
 License:        MIT
@@ -102,6 +102,9 @@ install -m 0644 -vp types.db.%{plugin_name} %{buildroot}%{_datadir}/collectd/
 
 
 %changelog
+* Thu Feb 03 2022 Matthias Runge <mrunge@redhat.com> - 1.0.4-2
+- bump release to trigger builds on c8s and c9s
+
 * Tue Oct 12 2021 Paul Leimer <pleimer@redhat.com> - 1.0.4
 - move root repository to github.com/infrawatch org
 - 391d6bb Account for counter rollover
