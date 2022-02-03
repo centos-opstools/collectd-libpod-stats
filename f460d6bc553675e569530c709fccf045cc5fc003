@@ -50,6 +50,29 @@
       "message": "sigh, I\u0027m going to have to build a ton of golang packages\n\nNo matching package to install: \u0027golang(github.com/pkg/errors)\u0027\nNo matching package to install: \u0027golang(golang.org/x/sys/unix)\u0027\nNo matching package to install: \u0027golang-github-google-cmp\u0027\nNo matching package to install: \u0027golang-uber-atomic\u0027\nNo matching package to install: \u0027golang-uber-multierr\u0027",
       "revId": "f460d6bc553675e569530c709fccf045cc5fc003",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c14af24e_de010ad3",
+        "filename": "collectd-libpod-stats.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 718
+      },
+      "writtenOn": "2022-02-03T16:20:54Z",
+      "side": 1,
+      "message": "Maybe we should update this too.\n\nI\u0027m not sure what issues it\u0027ll cause if this falls behind the current packaged version of collectd.",
+      "range": {
+        "startLine": 18,
+        "startChar": 25,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "f460d6bc553675e569530c709fccf045cc5fc003",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
