@@ -12,7 +12,7 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 
-Version:                1.0.4
+Version:                1.0.5
 
 %global plugin_name libpodstats
 %global collectd_version 5.11.0
@@ -102,6 +102,9 @@ install -m 0644 -vp types.db.%{plugin_name} %{buildroot}%{_datadir}/collectd/
 
 
 %changelog
+* Wed Apr 19 2023 Matthias Runge <mrunge@redhat.com> - 1.0.5-1
+- include records from volatile containers
+
 * Thu Feb 03 2022 Matthias Runge <mrunge@redhat.com> - 1.0.4-2
 - bump release to trigger builds on c8s and c9s
 
